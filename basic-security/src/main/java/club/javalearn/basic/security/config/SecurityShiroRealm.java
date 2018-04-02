@@ -72,4 +72,9 @@ public class SecurityShiroRealm extends AuthorizingRealm {
         log.info("-->身份认证<--  end");
         return authenticationInfo;
     }
+
+    @Override
+    public String getName() {
+        return "shiro-security-realm";
+    }
 }
