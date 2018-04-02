@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.Properties;
 
 /**
- * basci-security-parent
+ * shiro配置类
  *
  * @author king-pan
  * @date 2018-04-02
