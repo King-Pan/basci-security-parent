@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+<h1>首页</h1>
+
+<button type="button" shiro:lacksPermission="userInfo:add">用户查看</button>
+<button type="button" shiro:lacksPermission="userInfo:view">用户添加</button>
+<button type="button">用户修改</button>
+<button type="button">用户删除</button>
+<button type="button" shiro:lacksPermission="userInfo:test">测试</button>
+<p shiro:hasAnyPermissions="user:create, user:delete">
+    You can create or delete users.
+</p>
+
+<p th:text="thymeleaf标签测试">
+    哈哈哈哈
+</p>
+
+<p shiro:hasRole="admin">
+    <a>管理员角色</a>
+</p>
+<p shiro:hasRole="vip">
+    <a>vip会员</a>
+</p>
+<p shiro:hasRole="test">
+    <a>测试角色</a>
+</p>
+</body>
+</html>

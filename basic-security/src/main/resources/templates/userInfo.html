@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
+<head>
+    <meta charset="UTF-8">
+    <title>用户信息页面</title>
+</head>
+<body>
+<h1>用户信息页面</h1>
+
+<button shiro:lacksPermission="userInfo:add">用户查看</button>
+<button shiro:lacksPermission="userInfo:view">用户添加</button>
+<button>用户修改</button>
+<button>用户删除</button>
+<button shiro:lacksPermission="userInfo:test">测试</button>
+
+<shiro:hasRole name="admin">
+    <a href="admin.html">Administer the system</a>
+</shiro:hasRole>
+<div shiro:hasRole="admin">
+    <a href="admin.html">Administer the system</a>
+</div>
+</body>
+</html>
