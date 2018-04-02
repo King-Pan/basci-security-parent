@@ -1,6 +1,7 @@
 package club.javalearn.basic.security.config;
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
@@ -21,10 +22,11 @@ import java.util.Properties;
  * @date 2018-04-02
  **/
 @Configuration
+@Slf4j
 public class ShiroConfig {
     @Bean
-    public ShiroFilterFactoryBean shirFilter(SecurityManager securityManager) {
-        System.out.println("ShiroConfiguration.shirFilter()");
+    public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
+        log.info("shiroFilter start ... begin ... ");
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         //拦截器.
@@ -70,8 +72,8 @@ public class ShiroConfig {
     }
 
     @Bean
-    public MyShiroRealm myShiroRealm(){
-        MyShiroRealm myShiroRealm = new MyShiroRealm();
+    public SecurityShiroRealm myShiroRealm(){
+        SecurityShiroRealm myShiroRealm = new SecurityShiroRealm();
         myShiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
         return myShiroRealm;
     }
@@ -111,10 +113,13 @@ public class ShiroConfig {
         r.setDefaultErrorView("error");
         // Default is "exception"
         r.setExceptionAttribute("ex");
-        //r.setWarnLogCategory("example.MvcLogger");     // No default
         return r;
     }
 
+    /**
+     * 开启thymeleaf-extras-shiro功能
+     * @return ShiroDialect
+     */
     @Bean
     public ShiroDialect shiroDialect() {
         return new ShiroDialect();

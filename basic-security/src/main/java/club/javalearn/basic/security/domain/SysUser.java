@@ -60,7 +60,7 @@ public class SysUser {
                 "userId=" + userId +
                 ", userName='" + userName + '\'' +
                 ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
+                ", password='" + "***" + '\'' +
                 ", salt='" + salt + '\'' +
                 ", state=" + state +
                 ", roleList=" + roleList.size() +
