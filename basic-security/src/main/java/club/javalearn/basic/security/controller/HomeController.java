@@ -43,13 +43,12 @@ public class HomeController {
         try {
             subject.login(token);
             response = ServerResponse.createBySuccessMessage("登录成功");
+            response.setUrl("userList");
         }catch (LockedAccountException lae) {
             token.clear();
-            request.setAttribute("msg", "用户已经被锁定不能登录，请与管理员联系！");
             response = ServerResponse.createByErrorMessage("登录失败: 用户已经被锁定不能登录，请与管理员联系！");
         } catch (AuthenticationException e) {
             token.clear();
-            request.setAttribute("msg", "用户或密码不正确！");
             response = ServerResponse.createByErrorMessage("登录失败: 用户或密码不正确");
         }
         return response;

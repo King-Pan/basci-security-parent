@@ -13,8 +13,22 @@ import java.io.Serializable;
  **/
 @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 public class ServerResponse<T> implements Serializable {
+
+    /**
+     * 响应状态码
+     */
     private int status;
+    /**
+     * 响应信息
+     */
     private String msg;
+    /**
+     * 重定向地址
+     */
+    private String url;
+    /**
+     * 返回的数据
+     */
     private T data;
 
     private ServerResponse(int status) {
@@ -58,6 +72,13 @@ public class ServerResponse<T> implements Serializable {
         return msg;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public static <T> ServerResponse<T> createBySuccess() {
         return new ServerResponse<T>(ResponseCode.SUCCESS.getCode());

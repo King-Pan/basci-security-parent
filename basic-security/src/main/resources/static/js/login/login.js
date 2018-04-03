@@ -34,19 +34,19 @@ var vm = new Vue({
 
             $.ajax({
                 type:'post',
-                url:'/login',
+                url:'login',
                 data: JSON.stringify(vm.user),
                 contentType: "application/json",
                 success:function (data) {
                     if(data.status===200){
                         toastr.success(data.msg);
-                        window.location.href = "userList";
+                        window.location.href = data.url;
                     }else{
                         toastr.warning(data.msg);
                     }
                 },
                 error:function () {
-                    toastr.warn("服务器异常，请联系管理员");
+                    toastr.warning("服务器异常，请联系管理员");
                 }
             });
         }
