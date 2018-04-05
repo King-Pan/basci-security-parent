@@ -2,6 +2,7 @@ package club.javalearn.basic.security;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 
 /**
  * basci-security-parent
@@ -9,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author king-pan
  * @date 2018-04-02
  **/
+@ServletComponentScan
 @SpringBootApplication
 public class SpringBootShiroApplication {
 

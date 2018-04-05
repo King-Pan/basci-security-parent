@@ -20,20 +20,20 @@ import javax.servlet.http.HttpSessionListener;
 public class BasicPathHttpSessionListener implements HttpSessionListener {
     @Override
     public void sessionCreated(HttpSessionEvent se) {
-        log.debug("Session创建");
+        log.info("Session创建");
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         String path = request.getContextPath();
         //绝对路径
         String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
         request.setAttribute("URL",basePath);
         se.getSession().setAttribute("URL",basePath);
-        log.debug("请求绝对路径为:"+basePath);
+        log.info("请求绝对路径为:"+basePath);
 
 
     }
 
     @Override
     public void sessionDestroyed(HttpSessionEvent se) {
-        log.debug("销毁Session");
+        log.info("销毁Session");
     }
 }

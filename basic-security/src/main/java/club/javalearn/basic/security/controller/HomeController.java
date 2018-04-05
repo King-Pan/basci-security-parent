@@ -41,7 +41,7 @@ public class HomeController {
 
     @GetMapping(value="/login")
     public ModelAndView login(){
-        return new ModelAndView("login");
+        return new ModelAndView("login_m");
     }
 
     @GetMapping(value = {"/","/index","/home"})
@@ -53,17 +53,17 @@ public class HomeController {
     public ServerResponse login(HttpServletRequest request, @RequestBody SysUser user, Model model){
         ServerResponse response;
 
-        if (StringUtils.isBlank(user.getCode())){
-            response = ServerResponse.createByErrorMessage("登录失败: 验证码为空");
-            return response;
-        }else{
-            //生成的验证码
-            String code = (String) request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
-            if(!code.equals(user.getCode())){
-                response = ServerResponse.createByErrorMessage("登录失败: 验证码不正确");
-                return response;
-            }
-        }
+//        if (StringUtils.isBlank(user.getCode())){
+//            response = ServerResponse.createByErrorMessage("登录失败: 验证码为空");
+//            return response;
+//        }else{
+//            //生成的验证码
+//            String code = (String) request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
+//            if(!code.equals(user.getCode())){
+//                response = ServerResponse.createByErrorMessage("登录失败: 验证码不正确");
+//                return response;
+//            }
+//        }
 
         if (StringUtils.isEmpty(user.getUserName()) || StringUtils.isEmpty(user.getPassword())) {
             response = ServerResponse.createByErrorMessage("登录失败: 用户名或密码不能为空");
@@ -86,34 +86,6 @@ public class HomeController {
         return response;
     }
 
-    @RequestMapping("/defaultKaptcha")
-    public void defaultKaptcha(HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse) throws Exception{
-        byte[] captchaChallengeAsJpeg = null;
-        ByteArrayOutputStream jpegOutputStream = new ByteArrayOutputStream();
-        try {
-            //生产验证码字符串并保存到session中
-            String createText = defaultKaptcha.createText();
-            httpServletRequest.getSession().setAttribute("vrifyCode", createText);
-            //使用生产的验证码字符串返回一个BufferedImage对象并转为byte写入到byte数组中
-            BufferedImage challenge = defaultKaptcha.createImage(createText);
-            ImageIO.write(challenge, "jpg", jpegOutputStream);
-        } catch (IllegalArgumentException e) {
-            httpServletResponse.sendError(HttpServletResponse.SC_NOT_FOUND);
-            return;
-        }
-
-        //定义response输出类型为image/jpeg类型，使用response输出流输出图片的byte数组
-        captchaChallengeAsJpeg = jpegOutputStream.toByteArray();
-        httpServletResponse.setHeader("Cache-Control", "no-store");
-        httpServletResponse.setHeader("Pragma", "no-cache");
-        httpServletResponse.setDateHeader("Expires", 0);
-        httpServletResponse.setContentType("image/jpeg");
-        ServletOutputStream responseOutputStream =
-                httpServletResponse.getOutputStream();
-        responseOutputStream.write(captchaChallengeAsJpeg);
-        responseOutputStream.flush();
-        responseOutputStream.close();
-    }
 
     @GetMapping("/403")
     public ServerResponse unauthorizedRole(){
