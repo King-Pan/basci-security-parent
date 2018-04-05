@@ -1,33 +1,82 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>首页</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CRM管理系统</title>
+    <link href="static/green/css/base.css" rel="stylesheet">
+    <link href="static/green/css/login/login.css" rel="stylesheet">
+
 </head>
-<body>
-<h1>首页</h1>
-
-<button type="button" shiro:lacksPermission="userInfo:add">用户查看</button>
-<button type="button" shiro:lacksPermission="userInfo:view">用户添加</button>
-<button type="button">用户修改</button>
-<button type="button">用户删除</button>
-<button type="button" shiro:lacksPermission="userInfo:test">测试</button>
-<p shiro:hasAnyPermissions="user:create, user:delete">
-    You can create or delete users.
-</p>
-
-<p th:text="thymeleaf标签测试">
-    哈哈哈哈
-</p>
-
-<p shiro:hasRole="admin">
-    <a>管理员角色</a>
-</p>
-<p shiro:hasRole="vip">
-    <a>vip会员</a>
-</p>
-<p shiro:hasRole="test">
-    <a>测试角色</a>
-</p>
+<body class="default">
+<div class="login-hd">
+    <div class="left-bg"></div>
+    <div class="right-bg"></div>
+    <div class="hd-inner">
+        <span class="logo"></span>
+        <span class="split"></span>
+        <span class="sys-name">采购协同平台</span>
+    </div>
+</div>
+<div class="login-bd">
+    <div class="bd-inner">
+        <div class="inner-wrap">
+            <div class="lg-zone">
+                <div class="lg-box">
+                    <div class="lg-label"><h4>用户登录</h4></div>
+                    <div class="alert alert-error">
+                        <i class="iconfont">&#xe62e;</i>
+                        <span>请输入用户名</span>
+                    </div>
+                    <form>
+                        <div class="lg-username input-item clearfix">
+                            <i class="iconfont">&#xe60d;</i>
+                            <input type="text" placeholder="账号/邮箱">
+                        </div>
+                        <div class="lg-password input-item clearfix">
+                            <i class="iconfont">&#xe634;</i>
+                            <input type="password" placeholder="请输入密码">
+                        </div>
+                        <div class="lg-check clearfix">
+                            <div class="input-item">
+                                <i class="iconfont">&#xe633;</i>
+                                <input type="text" placeholder="验证码">
+                            </div>
+                            <span class="check-code">
+                                <img th:src="@{/defaultKaptcha}">
+                            </span>
+                        </div>
+                        <div class="tips clearfix">
+                            <label><input type="checkbox" checked="checked">记住用户名</label>
+                            <a href="javascript:;" class="register">立即注册</a>
+                            <a href="javascript:;" class="forget-pwd">忘记密码？</a>
+                        </div>
+                        <div class="enter">
+                            <a href="javascript:;" class="purchaser" onClick="javascript:window.location='main.html'">采购商登录</a>
+                            <a href="javascript:;" class="supplier" onClick="javascript:window.location='main.html'">供应商登录</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="lg-poster"></div>
+        </div>
+    </div>
+</div>
+<div class="login-ft">
+    <div class="ft-inner">
+        <div class="about-us">
+            <a href="javascript:;">关于我们</a>
+            <a href="javascript:;">法律声明</a>
+            <a href="javascript:;">服务条款</a>
+            <a href="javascript:;">联系方式</a>
+        </div>
+        <div class="address">地址：江苏省南京市雨花台区软件园&nbsp;邮编：210019&nbsp;&nbsp;Copyright&nbsp;©&nbsp;2015&nbsp;-&nbsp;2016&nbsp;uimaker-专注于ui设计&nbsp;版权所有</div>
+        <div class="other-info">建议使用IE8及以上版本浏览器&nbsp;苏ICP备&nbsp;09003078号&nbsp;E-mail：admin@uimaker.com</div>
+    </div>
+</div>
 </body>
 </html>
+
+<script type="text/javascript">
+
+</script>

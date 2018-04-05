@@ -7,7 +7,8 @@ var vm = new Vue({
             userName:null,
             password:null
         },
-        boxShow:true
+        warningShow:false,
+        errorMsg:''
     },
     methods: {
         /**
@@ -27,6 +28,10 @@ var vm = new Vue({
             }
             if(!vm.user.password){
                 toastr.warning("请输入密码");
+                return;
+            }
+            if(!vm.user.code){
+                toastr.warning("请输入验证码");
                 return;
             }
 

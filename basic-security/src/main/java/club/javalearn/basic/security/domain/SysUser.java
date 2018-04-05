@@ -35,6 +35,11 @@ public class SysUser {
      */
     private String name;
     /**
+     * 验证码
+     */
+    @Transient
+    private String code;
+    /**
      * 密码
      */
     private String password;
