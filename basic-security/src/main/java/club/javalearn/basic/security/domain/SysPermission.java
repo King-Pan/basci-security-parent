@@ -58,7 +58,7 @@ public class SysPermission {
     /**
      *
      */
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name="SysRolePermission",joinColumns={@JoinColumn(name="permissionId")},inverseJoinColumns={@JoinColumn(name="roleId")})
     private List<SysRole> roles = new ArrayList<>();
 
@@ -72,7 +72,6 @@ public class SysPermission {
                 ", permission='" + permission + '\'' +
                 ", parentId=" + parentId +
                 ", available=" + available +
-                ", roles=" + roles.size() +
                 '}';
     }
 }

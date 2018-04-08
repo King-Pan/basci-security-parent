@@ -2,10 +2,9 @@ package club.javalearn.basic.security.service.impl;
 
 import club.javalearn.basic.security.common.BootstrapMessage;
 import club.javalearn.basic.security.common.Message;
-import club.javalearn.basic.security.domain.SysUser;
-import club.javalearn.basic.security.repository.SysUserRepository;
-import club.javalearn.basic.security.service.SysUserService;
-import club.javalearn.basic.security.utils.Constant;
+import club.javalearn.basic.security.domain.CarVip;
+import club.javalearn.basic.security.repository.CarVipRepository;
+import club.javalearn.basic.security.service.CarVipService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,47 +19,36 @@ import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * basci-security-parent
- *
- * @author king-pan
- * @date 2018-04-02
- **/
 @Service
-public class SysUserServiceImpl implements SysUserService {
+public class CarVipServiceImpl implements CarVipService {
 
     @Autowired
-    private SysUserRepository userRepository;
+    private CarVipRepository vipRepository;
 
     @Override
-    public SysUser findByUserName(String userName) {
-        return userRepository.findByUserName(userName);
-    }
-
-    @Override
-    public Message<SysUser> getList(SysUser user, Pageable pageable) {
-        BootstrapMessage<SysUser> message = new BootstrapMessage<>();
+    public Message<CarVip> getList(CarVip vip, Pageable pageable) {
+        BootstrapMessage<CarVip> message = new BootstrapMessage<>();
         Sort sort = new Sort(Sort.Direction.DESC, "updateTime");
         sort.and(new Sort(Sort.Direction.ASC,"status"));
         sort.and(new Sort(Sort.Direction.ASC,"userId"));
         Pageable pageableRequest = new PageRequest(pageable.getPageNumber(),pageable.getPageSize() , sort);
-        Page<SysUser> page = userRepository.findAll(new Specification<SysUser>(){
+        Page<CarVip> page = vipRepository.findAll(new Specification<CarVip>(){
             @Override
-            public Predicate toPredicate(Root<SysUser> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-                Path<String> nickNamePath = root.get("nickName");
-                Path<String> userNamePath = root.get("userName");
-                Path<String> statusPath = root.get("status");
+            public Predicate toPredicate(Root<CarVip> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                Path<String> namePath = root.get("name");
+                Path<String> phoneNumPath = root.get("phoneNum");
+                Path<String> idCardPath = root.get("idCard");
                 List<Predicate> wherePredicate = new ArrayList<>();
                 //final User user = convertUser(param);
-                if(user!=null){
-                    if(StringUtils.isNoneBlank(user.getNickName())){
-                        wherePredicate.add(cb.like(nickNamePath,"%"+user.getNickName()+"%"));
+                if(vip!=null){
+                    if(StringUtils.isNoneBlank(vip.getName())){
+                        wherePredicate.add(cb.like(namePath,"%"+vip.getName()+"%"));
                     }
-                    if(StringUtils.isNoneBlank(user.getUserName())){
-                        wherePredicate.add(cb.like(userNamePath,"%"+user.getUserName()+"%"));
+                    if(StringUtils.isNoneBlank(vip.getPhoneNum())){
+                        wherePredicate.add(cb.like(phoneNumPath,"%"+vip.getPhoneNum()+"%"));
                     }
-                    if(StringUtils.isNoneBlank(user.getStatus()) && !Constant.ALL_STATUS.equals(user.getStatus())){
-                        wherePredicate.add(cb.equal(statusPath,user.getStatus()));
+                    if(StringUtils.isNoneBlank(vip.getIdCard())){
+                        wherePredicate.add(cb.equal(idCardPath,vip.getIdCard()));
                     }
                 }
 

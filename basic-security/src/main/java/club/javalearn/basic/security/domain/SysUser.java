@@ -1,5 +1,6 @@
 package club.javalearn.basic.security.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -60,7 +61,8 @@ public class SysUser {
      * 用户角色,
      * FetchType.EAGER 立即从数据库中进行加载数据
      */
-    @ManyToMany(fetch= FetchType.EAGER)
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "SysUserRole", joinColumns = { @JoinColumn(name = "userId") }, inverseJoinColumns ={@JoinColumn(name = "roleId") })
     private List<SysRole> roleList = new ArrayList<>();
 
@@ -76,7 +78,6 @@ public class SysUser {
                 ", status='" + status + '\'' +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
-                ", roleList=" + roleList +
                 '}';
     }
 
