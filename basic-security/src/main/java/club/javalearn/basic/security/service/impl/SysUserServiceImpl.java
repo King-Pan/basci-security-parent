@@ -40,7 +40,7 @@ public class SysUserServiceImpl implements SysUserService {
     @Override
     public Message<SysUser> getList(SysUser user, Pageable pageable) {
         BootstrapMessage<SysUser> message = new BootstrapMessage<>();
-        Sort sort = new Sort(Sort.Direction.DESC, "updateDate");
+        Sort sort = new Sort(Sort.Direction.DESC, "updateTime");
         sort.and(new Sort(Sort.Direction.ASC,"status"));
         sort.and(new Sort(Sort.Direction.ASC,"userId"));
         Pageable pageableRequest = new PageRequest(pageable.getPageNumber(),pageable.getPageSize() , sort);

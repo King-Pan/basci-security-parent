@@ -23,6 +23,7 @@ public interface SysUserService {
     /**
      * 分页查询用户信息
      * @param user 查询参数
+     * @param pageable 分页参数
      * @return 用户分页信息
      */
    Message<SysUser> getList(SysUser user, Pageable pageable);

@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -20,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author king-pan
  * @date 2018-04-02
  **/
-@Controller
+@RestController
 public class SysUserController {
 
 
@@ -35,8 +32,7 @@ public class SysUserController {
 
     @GetMapping("/users")
     @RequiresPermissions("user:view")
-    @ResponseBody
-    public Message<SysUser> userList(@RequestBody SysUser user,@PageableDefault Pageable pageable) {
+    public Message<SysUser> userList(SysUser user, @PageableDefault Pageable pageable) {
         return userService.getList(user, pageable);
     }
 
