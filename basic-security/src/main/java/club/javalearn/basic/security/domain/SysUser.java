@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -33,7 +34,7 @@ public class SysUser {
     /**
      * 名称（昵称或者真实姓名，不同系统不同定义）
      */
-    private String name;
+    private String nickName;
     /**
      * 验证码
      */
@@ -50,7 +51,11 @@ public class SysUser {
     /**
      * 用户状态,0:创建未认证（比如没有激活，没有输入验证码等等）--等待验证的用户 , 1:正常状态,2：用户被锁定
      */
-    private byte state;
+    private String status;
+
+    private Date createTime;
+
+    private Date updateTime;
     /**
      * 用户角色,
      * FetchType.EAGER 立即从数据库中进行加载数据
@@ -64,11 +69,14 @@ public class SysUser {
         return "SysUser{" +
                 "userId=" + userId +
                 ", userName='" + userName + '\'' +
-                ", name='" + name + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", code='" + code + '\'' +
                 ", password='" + "***" + '\'' +
                 ", salt='" + salt + '\'' +
-                ", state=" + state +
-                ", roleList=" + roleList.size() +
+                ", status='" + status + '\'' +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", roleList=" + roleList +
                 '}';
     }
 

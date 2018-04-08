@@ -22,13 +22,13 @@ var DatatableRemoteAjaxDemo = function() {
                 dataSet = raw.data;
               }
               return dataSet;
-            },
-          },
+            }
+          }
         },
         pageSize: 10,
         serverPaging: true,
         serverFiltering: true,
-        serverSorting: true,
+        serverSorting: true
       },
 
       // layout definition
@@ -49,23 +49,23 @@ var DatatableRemoteAjaxDemo = function() {
           pagination: {
             // page size select
             pageSizeSelect: [10, 20, 30, 50, 100],
-          },
-        },
+          }
+        }
       },
 
       search: {
-        input: $('#generalSearch'),
+        input: $('#generalSearch')
       },
 
       // columns definition
       columns: [
         {
           field: 'RecordID',
-          title: '#',
+          title: '用户编号',
           sortable: false, // disable sort for this column
           width: 40,
           selector: false,
-          textAlign: 'center',
+          textAlign: 'center'
         }, {
           field: 'OrderID',
           title: 'Order ID',
@@ -73,7 +73,7 @@ var DatatableRemoteAjaxDemo = function() {
           filterable: false, // disable or enable filtering
           width: 150,
           // basic templating support for column rendering,
-          template: '{{OrderID}} - {{ShipCountry}}',
+          template: '{{OrderID}} - {{ShipCountry}}'
         }, {
           field: 'ShipCountry',
           title: 'Ship Country',
@@ -81,23 +81,23 @@ var DatatableRemoteAjaxDemo = function() {
           template: function(row) {
             // callback function support for column rendering
             return row.ShipCountry + ' - ' + row.ShipCity;
-          },
+          }
         }, {
           field: 'ShipCity',
-          title: 'Ship City',
+          title: 'Ship City'
         }, {
           field: 'Currency',
           title: 'Currency',
-          width: 100,
+          width: 100
         }, {
           field: 'ShipDate',
           title: 'Ship Date',
           type: 'date',
-          format: 'MM/DD/YYYY',
+          format: 'MM/DD/YYYY'
         }, {
           field: 'Latitude',
           title: 'Latitude',
-          type: 'number',
+          type: 'number'
         }, {
           field: 'Status',
           title: 'Status',
@@ -113,7 +113,7 @@ var DatatableRemoteAjaxDemo = function() {
               7: {'title': 'Warning', 'class': ' m-badge--warning'},
             };
             return '<span class="m-badge ' + status[row.Status].class + ' m-badge--wide">' + status[row.Status].title + '</span>';
-          },
+          }
         }, {
           field: 'Type',
           title: 'Type',
@@ -126,7 +126,7 @@ var DatatableRemoteAjaxDemo = function() {
             };
             return '<span class="m-badge m-badge--' + status[row.Type].state + ' m-badge--dot"></span>&nbsp;<span class="m--font-bold m--font-' + status[row.Type].state + '">' +
                 status[row.Type].title + '</span>';
-          },
+          }
         }, {
           field: 'Actions',
           width: 110,
@@ -136,16 +136,9 @@ var DatatableRemoteAjaxDemo = function() {
           template: function (row, index, datatable) {
             var dropup = (datatable.getPageSize() - index) <= 4 ? 'dropup' : '';
             return '\
-						<div class="dropdown ' + dropup + '">\
-							<a href="#" class="btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown">\
-                                <i class="la la-ellipsis-h"></i>\
-                            </a>\
-						  	<div class="dropdown-menu dropdown-menu-right">\
-						    	<a class="dropdown-item" href="#"><i class="la la-edit"></i> Edit Details</a>\
-						    	<a class="dropdown-item" href="#"><i class="la la-leaf"></i> Update Status</a>\
-						    	<a class="dropdown-item" href="#"><i class="la la-print"></i> Generate Report</a>\
-						  	</div>\
-						</div>\
+                        <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Edit details">\
+                            <i class="la la-eye"></i>\
+                        </a>\
 						<a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Edit details">\
 							<i class="la la-edit"></i>\
 						</a>\
@@ -153,8 +146,8 @@ var DatatableRemoteAjaxDemo = function() {
 							<i class="la la-trash"></i>\
 						</a>\
 					';
-          },
-        }],
+          }
+        }]
     });
 
     $('#m_form_status').on('change', function() {
@@ -173,7 +166,7 @@ var DatatableRemoteAjaxDemo = function() {
     // public functions
     init: function() {
       demo();
-    },
+    }
   };
 }();
 
