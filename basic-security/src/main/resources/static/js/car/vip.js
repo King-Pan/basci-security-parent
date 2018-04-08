@@ -2,7 +2,7 @@ var vipObj = {
     initTable: function () {
         $('#vipTable').bootstrapTable({
             columns: [
-                { field:'state', checkbox:true},
+                { field:'state', checkbox:true},''
                 { field: 'id', title: 'VIP编号' },
                 { field: 'name', title: '用户昵称' },
                 { field: 'phoneNum', title: '电话号码' },
