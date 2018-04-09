@@ -2,9 +2,9 @@ var vipObj = {
     initTable: function () {
         $('#vipTable').bootstrapTable({
             columns: [
-                { field:'state', checkbox:true},''
+                { field:'state', checkbox:true},
                 { field: 'id', title: 'VIP编号' },
-                { field: 'name', title: '用户昵称' },
+                { field: 'name', title: '姓名' },
                 { field: 'phoneNum', title: '电话号码' },
                 { field: 'idCard', title: '身份证号码' },
                 { field: 'balance', title: '余额' },
@@ -12,6 +12,7 @@ var vipObj = {
                 { field: 'updateTime', title: '最后充值时间' }
             ],
             method: 'get',                      //请求方式（*）
+            toolbar: '#toolbar',                //工具按钮用哪个容器
             url: baseUrl +'car/vips',
             queryParams: queryParams,      //传递参数（*）
             pageNumber: 1,                       //初始化加载第一页，默认第一页
@@ -36,18 +37,31 @@ var vipObj = {
             sortOrder: "asc",                   //排序方式
             sidePagination: "server"           //分页方式：client客户端分页，server服务端分页（*）
         });
+    },
+    /**
+     * 查询按钮出发事件
+     */
+    doQuery: function () {
+        $('#vipTable').bootstrapTable('refresh');
+    },
+    openModal:function () {
+        $("#vipModal").modal("show");
     }
+
 };
 $(function () {
     vipObj.initTable();
 });
 
 function queryParams(params){
+
+    var name = $("#name").val()||'';
+    var idCard = $("#idCard").val()||'';
     return {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
         size: params.limit,   //页面大小
         page: (params.offset / params.limit),
         status: '-1',
-        userName: '',
-        nickName: ''
+        name: name,
+        idCard: idCard
     };
 }
