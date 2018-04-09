@@ -29,6 +29,7 @@ import java.util.List;
 @Service
 public class SysUserServiceImpl implements SysUserService {
 
+
     @Autowired
     private SysUserRepository userRepository;
 
@@ -79,5 +80,20 @@ public class SysUserServiceImpl implements SysUserService {
         message.setTotal(page.getTotalElements());
 
         return message;
+    }
+
+    @Override
+    public SysUser save(SysUser user) {
+        return userRepository.save(user);
+    }
+
+    @Override
+    public boolean delete(SysUser user) {
+        return false;
+    }
+
+    @Override
+    public boolean delete(Long userId) {
+        return false;
     }
 }

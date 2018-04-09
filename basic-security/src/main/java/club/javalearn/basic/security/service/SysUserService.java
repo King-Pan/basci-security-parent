@@ -27,4 +27,27 @@ public interface SysUserService {
      * @return 用户分页信息
      */
    Message<SysUser> getList(SysUser user, Pageable pageable);
+
+    /**
+     * 新增或者更新用户信息
+     * @param user 用户信息
+     * @return 用户信息
+     */
+   SysUser save(SysUser user);
+
+
+    /**
+     * 删除用户
+     * @param user 删除用户
+     * @return 删除成功返回true，返回失败返回false
+     */
+   boolean delete(SysUser user);
+
+    /**
+     * 通过用户ID删除用户
+     * @param userId 用户ID
+     * @return 删除成功返回true，返回失败返回false
+     */
+   boolean delete(Long userId);
+
 }

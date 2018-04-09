@@ -1,178 +1,184 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-<div>
-    <div th:fragment="main" class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
-        <!-- BEGIN: Left Aside -->
-        <button class="m-aside-left-close  m-aside-left-close--skin-dark " id="m_aside_left_close_btn">
-            <i class="la la-close"></i>
-        </button>
-        <div id="m_aside_left" class="m-grid__item	m-aside-left  m-aside-left--skin-dark ">
-            <div th:replace="/commons/left_menu :: left_menu"></div>
-        </div>
-        <!-- END: Left Aside -->
-        <div class="m-grid__item m-grid__item--fluid m-wrapper">
-            <div class="m-content">
-                <!--Begin::Section-->
-                <div class="row">
-                    <div class="col-xl-3">
-                        <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height " style="background-color: #578ebe">
-                            <div class="m-portlet__head">
-                                <div class="m-portlet__head-caption">
-                                    <div class="m-portlet__head-title">
-                                        <h3 class="m-portlet__head-text">
-                                            今日会员充值
-                                        </h3>
-                                    </div>
-                                </div>
-                                <div class="m-portlet__head-tools">
+<div th:fragment="main" class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
+    <!-- BEGIN: Left Aside -->
+    <button class="m-aside-left-close  m-aside-left-close--skin-dark " id="m_aside_left_close_btn">
+        <i class="la la-close"></i>
+    </button>
+    <div id="m_aside_left" class="m-grid__item	m-aside-left  m-aside-left--skin-dark ">
+        <div th:replace="/commons/left_menu :: left_menu"></div>
+    </div>
+    <!-- END: Left Aside -->
+    <div class="m-grid__item m-grid__item--fluid m-wrapper">
+        <div class="m-content">
+            <!--Begin::Section-->
+            <div class="row">
+                <div class="col-xl-3">
+                    <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height "
+                         style="background-color: #578ebe">
+                        <div class="m-portlet__head">
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <h3 class="m-portlet__head-text">
+                                        今日会员充值
+                                    </h3>
                                 </div>
                             </div>
-                            <div class="m-portlet__body">
-                                <span style="font-size: 25px;font-weight: bold;">￥：3200</span>
+                            <div class="m-portlet__head-tools">
                             </div>
                         </div>
-                    </div>
-                    <div class="col-xl-3">
-                        <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height " style="background-color: #e35b5a">
-                            <div class="m-portlet__head">
-                                <div class="m-portlet__head-caption">
-                                    <div class="m-portlet__head-title">
-                                        <h3 class="m-portlet__head-text">
-                                            今日会员消费
-                                        </h3>
-                                    </div>
-                                </div>
-                                <div class="m-portlet__head-tools">
-                                </div>
-                            </div>
-                            <div class="m-portlet__body">
-                                <span style="font-size: 25px;font-weight: bold;">￥：2890</span>
-                            </div>
+                        <div class="m-portlet__body">
+                            <span style="font-size: 25px;font-weight: bold;">￥：3200</span>
                         </div>
                     </div>
-                    <div class="col-xl-3">
-                        <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height " style="background-color: #44b6ae">
-                            <div class="m-portlet__head">
-                                <div class="m-portlet__head-caption">
-                                    <div class="m-portlet__head-title">
-                                        <h3 class="m-portlet__head-text">
-                                            本周会员累计充值
-                                        </h3>
-                                    </div>
-                                </div>
-                                <div class="m-portlet__head-tools">
-
+                </div>
+                <div class="col-xl-3">
+                    <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height "
+                         style="background-color: #e35b5a">
+                        <div class="m-portlet__head">
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <h3 class="m-portlet__head-text">
+                                        今日会员消费
+                                    </h3>
                                 </div>
                             </div>
-                            <div class="m-portlet__body">
-                                <!--begin::Widget 6-->
-                                <span style="font-size: 25px;font-weight: bold;">￥：32400</span>
-                                <!--end::Widget 6-->
+                            <div class="m-portlet__head-tools">
                             </div>
                         </div>
-
-                        <!--end:: Widgets/Activity-->
+                        <div class="m-portlet__body">
+                            <span style="font-size: 25px;font-weight: bold;">￥：2890</span>
+                        </div>
                     </div>
-                    <div class="col-xl-3">
-                        <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height " style="background-color: #8775a7">
-                            <div class="m-portlet__head">
-                                <div class="m-portlet__head-caption">
-                                    <div class="m-portlet__head-title">
-                                        <h3 class="m-portlet__head-text">
-                                            本周会员累计消费
-                                        </h3>
-                                    </div>
+                </div>
+                <div class="col-xl-3">
+                    <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height "
+                         style="background-color: #44b6ae">
+                        <div class="m-portlet__head">
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <h3 class="m-portlet__head-text">
+                                        本周会员累计充值
+                                    </h3>
                                 </div>
-                                <div class="m-portlet__head-tools">
+                            </div>
+                            <div class="m-portlet__head-tools">
 
-                                </div>
                             </div>
-                            <div class="m-portlet__body">
-                                <span style="font-size: 25px;font-weight: bold;">￥：13000</span>
-                            </div>
+                        </div>
+                        <div class="m-portlet__body">
+                            <!--begin::Widget 6-->
+                            <span style="font-size: 25px;font-weight: bold;">￥：32400</span>
+                            <!--end::Widget 6-->
                         </div>
                     </div>
 
+                    <!--end:: Widgets/Activity-->
+                </div>
+                <div class="col-xl-3">
+                    <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height "
+                         style="background-color: #8775a7">
+                        <div class="m-portlet__head">
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <h3 class="m-portlet__head-text">
+                                        本周会员累计消费
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="m-portlet__head-tools">
+
+                            </div>
+                        </div>
+                        <div class="m-portlet__body">
+                            <span style="font-size: 25px;font-weight: bold;">￥：13000</span>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-xl-3">
-                        <!--begin:: Widgets/Top Products-->
+            </div>
 
-                        <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height" style="background-color: #578ebe">
-                            <div class="m-portlet__head">
-                                <div class="m-portlet__head-caption">
-                                    <div class="m-portlet__head-title">
-                                        <h3 class="m-portlet__head-text">
-                                            本月累计充值
-                                        </h3>
-                                    </div>
-                                </div>
-                                <div class="m-portlet__head-tools">
+            <div class="row">
+                <div class="col-xl-3">
+                    <!--begin:: Widgets/Top Products-->
 
+                    <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height"
+                         style="background-color: #578ebe">
+                        <div class="m-portlet__head">
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <h3 class="m-portlet__head-text">
+                                        本月累计充值
+                                    </h3>
                                 </div>
                             </div>
-                            <div class="m-portlet__body">
-                                <span style="font-size: 25px;font-weight: bold;">￥：28800</span>
+                            <div class="m-portlet__head-tools">
+
                             </div>
                         </div>
-                    </div>
-                    <div class="col-xl-3">
-                        <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height " style="background-color: #e35b5a">
-                            <div class="m-portlet__head">
-                                <div class="m-portlet__head-caption">
-                                    <div class="m-portlet__head-title">
-                                        <h3 class="m-portlet__head-text">
-                                            本月累计消费
-                                        </h3>
-                                    </div>
-                                </div>
-                                <div class="m-portlet__head-tools">
-
-                                </div>
-                            </div>
-                            <div class="m-portlet__body">
-                                <span style="font-size: 25px;font-weight: bold;">￥：20000</span>
-                            </div>
+                        <div class="m-portlet__body">
+                            <span style="font-size: 25px;font-weight: bold;">￥：28800</span>
                         </div>
                     </div>
-                    <div class="col-xl-3">
-                        <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height" style="background-color: #44b6ae">
-                            <div class="m-portlet__head">
-                                <div class="m-portlet__head-caption">
-                                    <div class="m-portlet__head-title">
-                                        <h3 class="m-portlet__head-text">
-                                            上月累计消费
-                                        </h3>
-                                    </div>
-                                </div>
-                                <div class="m-portlet__head-tools">
-
+                </div>
+                <div class="col-xl-3">
+                    <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height "
+                         style="background-color: #e35b5a">
+                        <div class="m-portlet__head">
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <h3 class="m-portlet__head-text">
+                                        本月累计消费
+                                    </h3>
                                 </div>
                             </div>
-                            <div class="m-portlet__body">
-                                <span style="font-size: 25px;font-weight: bold;">￥：37800</span>
+                            <div class="m-portlet__head-tools">
+
                             </div>
                         </div>
+                        <div class="m-portlet__body">
+                            <span style="font-size: 25px;font-weight: bold;">￥：20000</span>
+                        </div>
                     </div>
-                    <div class="col-xl-3">
-                        <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height " style="background-color: #8775a7">
-                            <div class="m-portlet__head">
-                                <div class="m-portlet__head-caption">
-                                    <div class="m-portlet__head-title">
-                                        <h3 class="m-portlet__head-text">
-                                            本周会员累计消费
-                                        </h3>
-                                    </div>
+                </div>
+                <div class="col-xl-3">
+                    <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height"
+                         style="background-color: #44b6ae">
+                        <div class="m-portlet__head">
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <h3 class="m-portlet__head-text">
+                                        上月累计消费
+                                    </h3>
                                 </div>
-                                <div class="m-portlet__head-tools">
+                            </div>
+                            <div class="m-portlet__head-tools">
 
+                            </div>
+                        </div>
+                        <div class="m-portlet__body">
+                            <span style="font-size: 25px;font-weight: bold;">￥：37800</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3">
+                    <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height "
+                         style="background-color: #8775a7">
+                        <div class="m-portlet__head">
+                            <div class="m-portlet__head-caption">
+                                <div class="m-portlet__head-title">
+                                    <h3 class="m-portlet__head-text">
+                                        本周会员累计消费
+                                    </h3>
                                 </div>
                             </div>
-                            <div class="m-portlet__body">
-                                <span style="font-size: 25px;font-weight: bold;">￥：29800</span>
+                            <div class="m-portlet__head-tools">
+
                             </div>
+                        </div>
+                        <div class="m-portlet__body">
+                            <span style="font-size: 25px;font-weight: bold;">￥：29800</span>
                         </div>
                     </div>
                 </div>
@@ -180,6 +186,5 @@
         </div>
     </div>
 </div>
-
 </body>
 </html>
