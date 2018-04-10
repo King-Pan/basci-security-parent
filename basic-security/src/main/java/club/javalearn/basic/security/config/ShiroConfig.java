@@ -6,7 +6,9 @@ import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.apache.shiro.web.servlet.SimpleCookie;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
@@ -32,7 +34,7 @@ public class ShiroConfig {
      * @param securityManager 安全管理器
      * @return ShiroFilterFactoryBean
      */
-    @Bean
+    @Bean(name = "shiroFilter")
     public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
         log.info("shiroFilter start ... begin ... ");
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
@@ -63,6 +65,7 @@ public class ShiroConfig {
         //未授权界面;
         shiroFilterFactoryBean.setUnauthorizedUrl("/403");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
+
         return shiroFilterFactoryBean;
     }
 
@@ -105,6 +108,8 @@ public class ShiroConfig {
     @Bean
     public SecurityManager securityManager() {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
+        //设置rememberMe管理器 开启记住我功能
+        securityManager.setRememberMeManager(rememberMeManager());
         securityManager.setRealm(myShiroRealm());
         return securityManager;
     }
@@ -139,9 +144,37 @@ public class ShiroConfig {
         return r;
     }
 
+
+    /**
+     * cookie对象
+     * @return cookie对象
+     */
+    @Bean
+    public SimpleCookie rememberMeCookie() {
+        log.info("rememberMeCookie()");
+        // 这个参数是cookie的名称，对应前端的checkbox 的name = rememberMe
+        SimpleCookie simpleCookie = new SimpleCookie("rememberMe");
+        //如果httyOnly设置为true，则客户端不会暴露给客户端脚本代码，使用HttpOnly cookie有助于减少某些类型的跨站点脚本攻击；
+        simpleCookie.setHttpOnly(true);
+        // <!-- 记住我cookie生效时间30天（259200） ,单位秒;-->
+        simpleCookie.setMaxAge(259200);
+        return simpleCookie;
+    }
+
+    /**
+     * 记住我管理器 cookie管理对象;
+     * @return 记住我管理器
+     */
+    @Bean(name = "cookieRememberMeManager")
+    public CookieRememberMeManager rememberMeManager() {
+        System.out.println("rememberMeManager()");
+        CookieRememberMeManager cookieRememberMeManager = new CookieRememberMeManager();
+        cookieRememberMeManager.setCookie(rememberMeCookie());
+        return cookieRememberMeManager;
+    }
+
     /**
      * 开启thymeleaf-extras-shiro功能
-     *
      * @return ShiroDialect
      */
     @Bean

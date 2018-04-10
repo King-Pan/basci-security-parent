@@ -37,11 +37,6 @@ public class SysUser {
      */
     private String nickName;
     /**
-     * 验证码
-     */
-    @Transient
-    private String code;
-    /**
      * 密码
      */
     private String password;
@@ -72,7 +67,6 @@ public class SysUser {
                 "userId=" + userId +
                 ", userName='" + userName + '\'' +
                 ", nickName='" + nickName + '\'' +
-                ", code='" + code + '\'' +
                 ", password='" + "***" + '\'' +
                 ", salt='" + salt + '\'' +
                 ", status='" + status + '\'' +

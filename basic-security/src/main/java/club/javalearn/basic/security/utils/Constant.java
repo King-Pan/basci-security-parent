@@ -24,4 +24,6 @@ public interface Constant {
      * 数据删除的状态(删除)
      */
     String DELETE_STATUS = "3";
+
+    String REMEBER_ME = "rememberMe";
 }

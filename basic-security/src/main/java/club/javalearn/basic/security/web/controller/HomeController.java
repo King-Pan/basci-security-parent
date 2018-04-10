@@ -2,6 +2,7 @@ package club.javalearn.basic.security.web.controller;
 
 import club.javalearn.basic.security.common.ServerResponse;
 import club.javalearn.basic.security.domain.SysUser;
+import club.javalearn.basic.security.utils.Constant;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
@@ -66,6 +67,9 @@ public class HomeController {
 
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token=new UsernamePasswordToken(user.getUserName(),user.getPassword());
+        if(request.getParameter(Constant.REMEBER_ME)!=null){
+            token.setRememberMe(true);
+        }
         try {
             subject.login(token);
             response = ServerResponse.createBySuccessMessage("登录成功");
