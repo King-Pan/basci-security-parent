@@ -10,6 +10,7 @@ var userObj = {
                { field: 'updateTime', title: '更新时间' }
            ],
            method: 'get',                      //请求方式（*）
+           toolbar: '#toolbar',                //工具按钮用哪个容器
            url: baseUrl +'users',
            queryParams: queryParams,      //传递参数（*）
            pageNumber: 1,                       //初始化加载第一页，默认第一页
@@ -34,7 +35,10 @@ var userObj = {
            sortOrder: "asc",                   //排序方式
            sidePagination: "server"           //分页方式：client客户端分页，server服务端分页（*）
        });
-   }
+   },
+    openModal:function () {
+        $("#userModal").modal("show");
+    }
 };
 $(function () {
     userObj.initTable();

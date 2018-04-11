@@ -17,3 +17,13 @@ org.springframework.expression.spel.SpelEvaluationException: EL1008E: Property o
 ```
 
 
+``````
+
+```java
+Caused by: java.lang.StackOverflowError: null
+	at com.fasterxml.classmate.util.ResolvedTypeCache$Key.<init>(ResolvedTypeCache.java:99) ~[classmate-1.3.4.jar:1.3.4]
+
+```
+
+
+##使用的版本不能超过2.5.0 新版本的bug

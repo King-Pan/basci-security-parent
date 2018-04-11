@@ -5,10 +5,7 @@ import club.javalearn.basic.security.common.ServerResponse;
 import club.javalearn.basic.security.domain.SysUser;
 import club.javalearn.basic.security.service.SysUserService;
 import club.javalearn.basic.security.utils.Constant;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.*;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -32,7 +29,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author king-pan
  * @date 2018-04-02
  **/
-@ApiModel(value = "userController",description = "用户管理控制器")
+@Api(value = "用户相关接口")
 @RestController
 public class SysUserController {
 
@@ -74,7 +71,7 @@ public class SysUserController {
         try {
             subject.login(token);
             response = ServerResponse.createBySuccessMessage("登录成功");
-            response.setUrl("userList");
+            response.setUrl("index");
         }catch (LockedAccountException lae) {
             token.clear();
             response = ServerResponse.createByErrorMessage("登录失败: 用户已经被锁定不能登录，请与管理员联系！");
@@ -85,7 +82,7 @@ public class SysUserController {
         return response;
     }
 
-    @ApiOperation(value="用户页面", notes="用户页面")
+    @ApiOperation(value="用户页面")
     @RequiresPermissions("user")
     @GetMapping(value = {"/user/", "/user"})
     public ModelAndView userPage() {
@@ -93,7 +90,7 @@ public class SysUserController {
     }
 
 
-    @ApiOperation(value="用户列表", notes="用户列表")
+    @ApiOperation(value="用户列表")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "user", value = "用户查询参数", required = true, dataType = "SysUser"),
             @ApiImplicitParam(name = "pageable", value = "分页参数", required = true, dataType = "Pageable")

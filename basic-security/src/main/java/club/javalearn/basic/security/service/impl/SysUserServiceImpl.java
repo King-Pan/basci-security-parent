@@ -38,6 +38,9 @@ public class SysUserServiceImpl implements SysUserService {
         return userRepository.findByUserName(userName);
     }
 
+
+
+
     @Override
     public Message<SysUser> getList(SysUser user, Pageable pageable) {
         BootstrapMessage<SysUser> message = new BootstrapMessage<>();
