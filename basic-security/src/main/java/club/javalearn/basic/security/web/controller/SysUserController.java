@@ -7,6 +7,7 @@ import club.javalearn.basic.security.service.SysUserService;
 import club.javalearn.basic.security.utils.Constant;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
@@ -31,6 +32,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author king-pan
  * @date 2018-04-02
  **/
+@ApiModel(value = "userController",description = "用户管理控制器")
 @RestController
 public class SysUserController {
 
