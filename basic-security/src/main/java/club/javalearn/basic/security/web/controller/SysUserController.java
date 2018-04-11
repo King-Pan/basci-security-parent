@@ -5,6 +5,9 @@ import club.javalearn.basic.security.common.ServerResponse;
 import club.javalearn.basic.security.domain.SysUser;
 import club.javalearn.basic.security.service.SysUserService;
 import club.javalearn.basic.security.utils.Constant;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -80,12 +83,19 @@ public class SysUserController {
         return response;
     }
 
+    @ApiOperation(value="用户页面", notes="用户页面")
+    @RequiresPermissions("user")
     @GetMapping(value = {"/user/", "/user"})
     public ModelAndView userPage() {
         return new ModelAndView("security/user");
     }
 
 
+    @ApiOperation(value="用户列表", notes="用户列表")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "user", value = "用户查询参数", required = true, dataType = "SysUser"),
+            @ApiImplicitParam(name = "pageable", value = "分页参数", required = true, dataType = "Pageable")
+    })
     @GetMapping("/users")
     @RequiresPermissions("user:view")
     public Message<SysUser> userList(SysUser user, @PageableDefault Pageable pageable) {
