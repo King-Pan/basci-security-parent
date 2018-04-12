@@ -89,7 +89,7 @@ public class SysUserController {
 
     @ApiOperation(value = "用户页面")
     @RequiresPermissions("user")
-    @GetMapping(value = {"/user/", "/user"})
+    @GetMapping(value = { "/user"})
     public ModelAndView userPage() {
         return new ModelAndView("security/user");
     }
@@ -106,36 +106,27 @@ public class SysUserController {
         return userService.getList(user, pageable);
     }
 
-    /**
-     * 用户查询.
-     *
-     * @return
-     */
-    @RequestMapping("/userList")
-    @RequiresPermissions("userInfo:view")
-    public String userInfo() {
-        return "userInfo";
-    }
 
-    /**
-     * 用户添加;
-     *
-     * @return
-     */
-    @RequestMapping("/userAdd")
-    @RequiresPermissions("userInfo:add")
-    public String userInfoAdd() {
-        return "userInfoAdd";
-    }
 
-    /**
-     * 用户删除;
-     *
-     * @return
-     */
-    @RequestMapping("/userDel")
-    @RequiresPermissions("userInfo:del")
-    public String userDel() {
-        return "userInfoDel";
+    public ServerResponse update(SysUser user){
+        ServerResponse serverResponse = null;
+        String msg =null;
+        try {
+            if(user.getUserId()!=null){
+                msg = "用户修改";
+            }else{
+                msg = "用户新增";
+            }
+
+            SysUser sysUser = userService.save(user);
+            if(sysUser!=null){
+                serverResponse = ServerResponse.createBySuccessMessage(msg + "成功");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            serverResponse = ServerResponse.createByErrorMessage(msg + "失败");
+        }
+
+        return serverResponse;
     }
 }
