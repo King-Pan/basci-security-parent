@@ -1,6 +1,8 @@
 package club.javalearn.basic.security.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,37 +22,44 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@ApiModel(value = "SysUser",description = "用户信息")
 @NoArgsConstructor
 @AllArgsConstructor
 public class SysUser {
 
     @Id
     @GeneratedValue
+    @ApiModelProperty("用户ID")
     private Integer userId;
     /**
      * 帐号
      */
     @Column(unique =true)
+    @ApiModelProperty("用户账号")
     private String userName;
     /**
      * 名称（昵称或者真实姓名，不同系统不同定义）
      */
+    @ApiModelProperty("昵称")
     private String nickName;
     /**
      * 密码
      */
+    @ApiModelProperty("用户密码")
     private String password;
     /**
      * 加密密码的盐
      */
+    @ApiModelProperty("加密密码的盐")
     private String salt;
     /**
      * 用户状态,0:创建未认证（比如没有激活，没有输入验证码等等）--等待验证的用户 , 1:正常状态,2：用户被锁定
      */
+    @ApiModelProperty("用户状态: 0 未认证，1：正常，2：锁定，3：删除")
     private String status;
-
+    @ApiModelProperty("创建时间")
     private Date createTime;
-
+    @ApiModelProperty("更新时间")
     private Date updateTime;
     /**
      * 用户角色,

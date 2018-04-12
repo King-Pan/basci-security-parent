@@ -16,6 +16,7 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +30,11 @@ import javax.servlet.http.HttpServletRequest;
  * @author king-pan
  * @date 2018-04-02
  **/
-@Api(value = "用户相关接口")
+@Api(value = "用户相关接口",
+        description = "用户信息操作API",
+        tags = "UserApi",
+        consumes = MediaType.APPLICATION_JSON_VALUE,
+        produces = MediaType.APPLICATION_JSON_VALUE)
 @RestController
 public class SysUserController {
 
@@ -37,13 +42,13 @@ public class SysUserController {
     @Autowired
     private SysUserService userService;
 
-    @GetMapping(value="/login")
-    public ModelAndView login(){
+    @GetMapping(value = "/login")
+    public ModelAndView login() {
         return new ModelAndView("login_m");
     }
 
-    @PostMapping(value="/login")
-    public ServerResponse login(HttpServletRequest request, @RequestBody SysUser user, Model model){
+    @PostMapping(value = "/login")
+    public ServerResponse login(HttpServletRequest request, @RequestBody SysUser user, Model model) {
         ServerResponse response;
 
 //        if (StringUtils.isBlank(user.getCode())){
@@ -64,15 +69,15 @@ public class SysUserController {
         }
 
         Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token=new UsernamePasswordToken(user.getUserName(),user.getPassword());
-        if(request.getParameter(Constant.REMEBER_ME)!=null){
+        UsernamePasswordToken token = new UsernamePasswordToken(user.getUserName(), user.getPassword());
+        if (request.getParameter(Constant.REMEBER_ME) != null) {
             token.setRememberMe(true);
         }
         try {
             subject.login(token);
             response = ServerResponse.createBySuccessMessage("登录成功");
             response.setUrl("index");
-        }catch (LockedAccountException lae) {
+        } catch (LockedAccountException lae) {
             token.clear();
             response = ServerResponse.createByErrorMessage("登录失败: 用户已经被锁定不能登录，请与管理员联系！");
         } catch (AuthenticationException e) {
@@ -82,7 +87,7 @@ public class SysUserController {
         return response;
     }
 
-    @ApiOperation(value="用户页面")
+    @ApiOperation(value = "用户页面")
     @RequiresPermissions("user")
     @GetMapping(value = {"/user/", "/user"})
     public ModelAndView userPage() {
@@ -90,7 +95,7 @@ public class SysUserController {
     }
 
 
-    @ApiOperation(value="用户列表")
+    @ApiOperation(value = "用户列表")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "user", value = "用户查询参数", required = true, dataType = "SysUser"),
             @ApiImplicitParam(name = "pageable", value = "分页参数", required = true, dataType = "Pageable")
@@ -116,7 +121,6 @@ public class SysUserController {
      * 用户添加;
      *
      * @return
-     *
      */
     @RequestMapping("/userAdd")
     @RequiresPermissions("userInfo:add")
