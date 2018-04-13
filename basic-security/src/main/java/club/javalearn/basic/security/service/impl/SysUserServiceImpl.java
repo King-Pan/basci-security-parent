@@ -38,7 +38,14 @@ public class SysUserServiceImpl implements SysUserService {
         return userRepository.findByUserName(userName);
     }
 
-
+    @Override
+    public Boolean existsUser(String userName) {
+        Boolean exists = false;
+        if(StringUtils.isNoneBlank(userName)){
+            exists = findByUserName(userName)!=null;
+        }
+        return exists;
+    }
 
 
     @Override

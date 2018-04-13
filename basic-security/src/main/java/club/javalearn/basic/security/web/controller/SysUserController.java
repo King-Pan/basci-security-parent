@@ -107,24 +107,52 @@ public class SysUserController {
     }
 
 
-
-    public ServerResponse update(SysUser user){
+    @PostMapping("/user")
+    public ServerResponse save(@RequestBody SysUser user){
         ServerResponse serverResponse = null;
-        String msg =null;
         try {
-            if(user.getUserId()!=null){
-                msg = "用户修改";
-            }else{
-                msg = "用户新增";
+            if(!userService.existsUser(user.getUserName())){
+                throw new RuntimeException("用户已经存在");
             }
-
-            SysUser sysUser = userService.save(user);
-            if(sysUser!=null){
-                serverResponse = ServerResponse.createBySuccessMessage(msg + "成功");
+            if(userService.save(user)!=null){
+                serverResponse = ServerResponse.createBySuccessMessage("用户新增成功");
             }
         }catch (Exception e){
             e.printStackTrace();
-            serverResponse = ServerResponse.createByErrorMessage(msg + "失败");
+            serverResponse = ServerResponse.createByErrorMessage("用户新增失败:" + e.getMessage());
+        }
+
+        return serverResponse;
+    }
+
+
+
+    @PutMapping("/user/{id}")
+    public ServerResponse update(@PathVariable Long id,SysUser user){
+        ServerResponse serverResponse = null;
+        try {
+            if(userService.save(user)!=null){
+                serverResponse = ServerResponse.createBySuccessMessage("用户修改成功");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            serverResponse = ServerResponse.createByErrorMessage("用户修改失败");
+        }
+
+        return serverResponse;
+    }
+
+    @ApiOperation(value = "用户删除")
+    @DeleteMapping("/user/{id}")
+    public ServerResponse delete(@PathVariable Long id){
+        ServerResponse serverResponse = null;
+        try {
+            if(userService.delete(id)){
+                serverResponse = ServerResponse.createBySuccessMessage("用户删除成功");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            serverResponse = ServerResponse.createByErrorMessage("用户删除失败");
         }
 
         return serverResponse;

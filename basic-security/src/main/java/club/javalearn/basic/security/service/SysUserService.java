@@ -21,6 +21,14 @@ public interface SysUserService {
 
 
     /**
+     * 判断用户名是否存在
+     * @param userName 用户名
+     * @return 存在返回true，不存在返回false
+     */
+   Boolean existsUser(String userName);
+
+
+    /**
      * 分页查询用户信息
      * @param user 查询参数
      * @param pageable 分页参数
