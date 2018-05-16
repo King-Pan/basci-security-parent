@@ -23,7 +23,7 @@ var userObj = {
            showRefresh: false,                  //是否显示刷新按钮
            minimumCountColumns: 2,             //最少允许的列数
            clickToSelect: false,                //是否启用点击选中行
-           height: 580,                       //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+           height: 500,                       //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
            uniqueId: "userId",                     //每一行的唯一标识，一般为主键列
            showToggle: false,                    //是否显示详细视图和列表视图的切换按钮
            cardView: false,                    //是否显示详细视图
@@ -36,20 +36,29 @@ var userObj = {
            sidePagination: "server"           //分页方式：client客户端分页，server服务端分页（*）
        });
    },
+    /**
+     * 查询按钮出发事件
+     */
+    doQuery: function () {
+        $('#userTable').bootstrapTable('refresh');
+    },
     openModal:function () {
         $("#userModal").modal("show");
     }
 };
 $(function () {
     userObj.initTable();
+    $("#s_status").select2();
 });
 
 function queryParams(params){
+    var userName = $("#s_userName").val()||'';
+    var nickName = $("#s_nickName").val()||'';
     return {   //这里的键的名字和控制器的变量名必须一直，这边改动，控制器也需要改成一样的
         size: params.limit,   //页面大小
         page: (params.offset / params.limit),
         status: '-1',
-        userName: '',
-        nickName: ''
+        userName: userName,
+        nickName: nickName
     };
 }
